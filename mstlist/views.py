@@ -105,7 +105,7 @@ def player_edit(request, pk):
         if form.is_valid():
             playermodel = form.save(commit=False)
             playermodel.save()
-            return redirect('playerlist', pk=playermodel.pk)
+            return redirect('playerlist')
     else:
         form = PlayerForm(instance=playermodel)
     return render(request, 'mstlist/player_Edit.html', {'form': form})
