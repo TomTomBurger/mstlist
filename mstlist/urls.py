@@ -9,7 +9,7 @@ urlpatterns = [
     path('sagyolist/<int:pk>/edit/', views.sagyo_edit, name='sagyo_edit'),
     path('sagyolist/<int:pk>/remove/', views.sagyo_remove, name='sagyo_remove'),
 
-    path('playerlist', views.MemberList.as_view()),
+    path('playerlist', views.MemberList.as_view(),name='playerlist'),
     path('playerlist/new/', views.player_new, name='player_new'),
     path('playerlist/<int:pk>/edit/', views.player_edit, name='player_edit'),
 
