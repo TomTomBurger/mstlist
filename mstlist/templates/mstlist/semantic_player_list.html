@@ -1,0 +1,39 @@
+
+  {% load static %}
+
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+      <link rel="stylesheet" href="{% static 'css/skeleton.css' %}">
+      <title>SamplePage</title>
+    </head>
+    
+    <body>
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>年齢</th>
+            <th>名前</th>
+            <th>ポジション</th>
+            <th>チーム</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for member in member_list %}
+            <tr>
+              <td>{{ member.id }}</td>
+              <td>{{ member.age }}</td>
+              <td>{{ member.name }}</td>
+              <td>{{ member.position }}</td>
+              <td>{{ member.team }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+      
+    </body>
+  </html>

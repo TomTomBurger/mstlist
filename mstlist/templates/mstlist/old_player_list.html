@@ -1,0 +1,143 @@
+{% extends 'mstlist/base.html' %}
+
+  {% block content %}
+
+  <!-- <html> -->
+    <!-- <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <link href="{% static 'css/semantic.css' %}" rel="stylesheet">
+      <link href="{% static 'css/icon.css' %}" rel="stylesheet">
+      <title>SamplePage</title>
+
+      <div class="ui fixed stackable inverted menu">
+        <div class="header item">
+          {{title}}
+        </div>
+        <a class="item">
+          EEL_System
+        </a>
+        <div class="right menu">
+          <a class="item">
+            Log in
+          </a>
+          <a class="item">
+            Sign up
+          </a>
+        </div>
+      </div>
+      
+    </head> -->
+    
+    <!-- <body> -->
+
+      <div>
+
+        <button class="ui facebook button">
+          <i class="facebook icon"></i>
+          Facebook
+        </button>
+        <button class="ui twitter button">
+          <i class="twitter icon"></i>
+          Twitter
+        </button>
+        <button class="ui google plus button">
+          <i class="google plus icon"></i>
+          Google Plus
+        </button>
+        <button class="ui vk button">
+          <i class="vk icon"></i>
+          VK
+        </button>
+        <button class="ui linkedin button">
+          <i class="linkedin icon"></i>
+          LinkedIn
+        </button>
+        <button class="ui instagram button">
+          <i class="instagram icon"></i>
+          Instagram
+        </button>
+        <button class="ui youtube button">
+          <i class="youtube icon"></i>
+          YouTube
+        </button>
+
+      </div>
+
+      <div>
+        <div class="ui labeled button" tabindex="0">
+          <div class="ui red button">
+            <i class="heart icon"></i> Like
+          </div>
+          <a class="ui basic red left pointing label">
+            1,048
+          </a>
+        </div>
+        <div class="ui labeled button" tabindex="0">
+          <div class="ui basic blue button">
+            <i class="fork icon"></i> Forks
+          </div>
+          <a class="ui basic left pointing blue label">
+            1,048
+          </a>
+        </div>
+      </div>
+
+      <table class="ui celled striped table">
+
+        <thead>
+          <tr>
+            <th colspan="4">
+              playerlist
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for member in member_list %}
+          <tr>
+            <td class="collapsing">
+              <a href="/"><i class="pencil alternate icon"></i></a> 
+            </td>
+            <td class="collapsing">
+              <a href="/">{{ member.id }}</a>
+            </td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.position }}</td>
+            <!-- <td class="right aligned collapsing">{{ member.position }}</td> -->
+          </tr>
+          {% endfor %}
+        </tbody>
+
+
+      </table>
+
+      <!-- <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>年齢</th>
+            <th>名前</th>
+            <th>ポジション</th>
+            <th>チーム</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for member in member_list %}
+            <tr>
+              <td>{{ member.id }}</td>
+              <td>{{ member.age }}</td>
+              <td>{{ member.name }}</td>
+              <td>{{ member.position }}</td>
+              <td>{{ member.team }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+
+      </table> -->
+      
+    <!-- </body> -->
+  <!-- </html> -->
+
+  {% endblock content %}

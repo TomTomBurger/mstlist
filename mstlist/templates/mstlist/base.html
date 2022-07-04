@@ -1,0 +1,59 @@
+{% load static %}
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="{% static 'css/semantic.css' %}" rel="stylesheet">
+    <link href="{% static 'css/icon.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mstlist.css' %}" rel="stylesheet">
+
+    <title>EEL_System</title>
+
+  </head>
+
+  <body>
+    <!-- サイドバーメニュー -->
+    <div class="ui sidebar inverted vertical menu">
+      <a href="/" class="item">
+        Home
+      </a>
+      <a href="/sagyolist" class="item">
+        作業管理
+      </a>      
+      <a href="/schedule" class="item">
+        予定管理
+      </a>
+      <a href="/playerlist" class="item">
+        担当者管理
+      </a>      
+    </div>
+
+    <!-- 上部ナビゲーションメニュー -->
+    <div class="ui fixed menu">
+      <div class="menu">
+        <div id="js-sidebar" class="item"><i class="icon large grey content"></i></div>
+      </div>
+         <a href="/" class="header item">EEL_Web</a>
+    </div>
+
+    <!-- コンテンツ本体 -->
+    <div class="pusher">      
+      {% block content %}
+
+      {% endblock %}              
+    </div>
+
+    <!-- サイドバーの開閉処理 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/semantic.js' %}"></script>
+    <script>
+      $('#js-sidebar').click(function() {
+        $('.ui.sidebar').sidebar('toggle');
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,50 @@
+{% extends 'mstlist/base.html' %}
+{% block content %}
+
+    <a href="/schedule/new/"><i class="pencil alternate icon">AddSchedule</i></a> 
+
+    <table class="ui celled striped table">
+
+        <thead>
+        <tr>
+            <th colspan="6">
+                予定一覧
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for s in schedules %}
+        <tr>
+            <td class="collapsing">
+            <a href="{% url 'schedule_edit' pk=s.id %}"><i class="pencil alternate icon"></i></a> 
+            </td>
+            <td class="collapsing">{{ s.yDate }}</td>
+            <!-- s.cd 子クラスのforeignkey ⇒ .name 親クラスの名称 -->
+            <td class="collapsing">{{ s.cd.name }}</td> 
+            <td class="collapsing">{{ s.sagyoCd }}</td>
+            <td class="collapsing">
+                <a href="{% url 'schedule_remove' pk=s.id %}"><i class="times circle icon"></i></i></a> 
+            </td>
+            <td></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $('input:visible').first().focus();
+      $(function(){
+          $(".times circle icon").click(function(){
+              if(confirm("削除しますか？")){
+                  //yesの処理（何もぜず進む）
+              }else{
+                  //cancelの処理
+                  return false;
+              }
+          });
+      })
+    </script>
+
+{% endblock content %}

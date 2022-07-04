@@ -1,0 +1,38 @@
+{% extends 'mstlist/base.html' %}
+
+{% block content %}
+
+    <a href="/sagyolist/new/"><i class="pencil alternate icon">AddSagyo</i></a> 
+
+    <table class="ui celled striped table">
+
+        <thead>
+            <tr>
+            <th colspan="5">
+                sagyolist
+            </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for sagyo in sagyo_list %}
+            <tr>
+                <td class="collapsing">
+                    <a href="{% url 'sagyo_edit' pk=sagyo.cd %}"><i class="pencil alternate icon"></i></a> 
+                </td>
+                <td class="collapsing">
+                    <a href="{% url 'sagyo_edit' pk=sagyo.cd %}">{{ sagyo.cd }}</a>
+                </td>
+                <td class="collapsing">
+                    {{ sagyo.name }}
+                </td>
+                <td class="collapsing">
+                    <a href="{% url 'sagyo_remove' pk=sagyo.cd %}"><i class="times circle icon"></i></i></a> 
+                </td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  {% endblock content %}

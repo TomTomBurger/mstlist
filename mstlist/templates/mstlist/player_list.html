@@ -1,0 +1,35 @@
+{% extends 'mstlist/base.html' %}
+
+{% block content %}
+
+    <div>
+  
+      <a href="/playerlist/new/"><i class="pencil alternate icon">AddPlayer</i></a> 
+
+      <table class="ui celled striped table">
+
+        <thead>
+          <tr>
+            <th colspan="4">
+              playerlist
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for member in player_list %}
+          <tr>
+            <td class="collapsing">
+              <a href="{% url 'player_edit' pk=member.id %}"><i class="pencil alternate icon"></i></a> 
+            </td>
+            <td class="collapsing">
+              <a href="{% url 'player_edit' pk=member.id %}">{{ member.id }}</a>
+            </td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.position }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endblock content %}
