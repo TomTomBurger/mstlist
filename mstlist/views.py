@@ -89,7 +89,7 @@ def schedule_edit(request, pk):
             return redirect('schedule')
     else:
         form = ScheduleForm(instance=schedule)
-    return render(request, 'mstlist/schedule_Edit.html', {'form': form})
+    return render(request, 'mstlist/Schedule_Edit.html', {'form': form})
 
 #削除
 def schedule_remove(request, pk):
