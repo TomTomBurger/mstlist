@@ -7,19 +7,10 @@
       <a href="/playerlist/new/"><i class="pencil alternate icon">AddPlayer</i></a> 
 
       <div style='text-align: right;'>
-        <!-- <form action="{% url 'player_pdf' %}" method="post" target="_blank"> -->
-          <!-- {% csrf_token %}
-          <input type='submit' class="ui button" value="PDF作成"> -->
-          <!-- <p style='text-align: right;'><input type='submit' class="ui button" value="PDF作成"></p> -->
-          <!-- <input type='submit' style='text-align: center;' value="PDF作成"> -->
-        <!-- </form> -->
         <button class="ui button" type="submit" method="post"><a href="{% url 'player_pdf' %}" target="_blank" rel="noopener noreferrer">PDF</a></button>
-        <button class="ui button" type="submit"><a href="{% url 'player_export' %}">CSV</a></button>
-        
+        <button class="ui button" type="submit"><a href="{% url 'player_export' %}">CSV</a></button>        
       </div>
       
-
-
       <table class="ui celled striped table">
 
         <thead>

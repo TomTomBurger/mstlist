@@ -149,10 +149,10 @@ def player_pdf(request):
     response['Content-Disposition'] = 'filename=' + pdf_name
 
     #デプロイするときはこっち
-    # font_url = r'/home/sakai/sakai.pythonanywhere.com/mstlist/static/fonts/MSMincho/msmincho.ttc'
+    font_url = r'/home/sakai/sakai.pythonanywhere.com/mstlist/static/fonts/MSMincho/msmincho.ttc'
 
     #localhostはこっち
-    font_url = r'./mstlist/static/fonts/MSMincho/msmincho.ttc'
+    # font_url = r'./mstlist/static/fonts/MSMincho/msmincho.ttc'
 
     pdfmetrics.registerFont(TTFont("msmincho", font_url))
 
