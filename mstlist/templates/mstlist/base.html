@@ -10,6 +10,10 @@
     <link href="{% static 'css/icon.css' %}" rel="stylesheet">
     <link href="{% static 'css/mstlist.css' %}" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/semantic.js' %}"></script>
+    <script src="{% static 'js/mstlist.js' %}"></script>
+
     <title>EEL_System</title>
 
   </head>
@@ -47,13 +51,11 @@
     </div>
 
     <!-- サイドバーの開閉処理 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="{% static 'js/semantic.js' %}"></script>
-    <script>
+    <!-- <script>
       $('#js-sidebar').click(function() {
         $('.ui.sidebar').sidebar('toggle');
       });
-    </script>
+    </script> -->
 
   </body>
 </html>

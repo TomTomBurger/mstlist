@@ -24,7 +24,7 @@
             <td class="collapsing">{{ s.cd.name }}</td> 
             <td class="collapsing">{{ s.sagyoCd }}</td>
             <td class="collapsing">
-                <a href="{% url 'schedule_remove' pk=s.id %}"><i class="times circle icon"></i></i></a> 
+            <a href="{% url 'schedule_remove' pk=s.id %}" class="btn_remove"><i class="times circle icon"></i></a> 
             </td>
             <td></td>
         </tr>
@@ -32,11 +32,11 @@
         </tbody>
     </table>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
+    <!-- <script>
       $('input:visible').first().focus();
       $(function(){
-          $(".times circle icon").click(function(){
+        //   $(".collapsing").click(function(){
+        $(".btn_remove").click(function(){
               if(confirm("削除しますか？")){
                   //yesの処理（何もぜず進む）
               }else{
@@ -45,6 +45,6 @@
               }
           });
       })
-    </script>
+    </script> -->
 
 {% endblock content %}
