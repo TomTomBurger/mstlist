@@ -13,6 +13,9 @@ urlpatterns = [
     path('playerlist/new/', views.player_new, name='player_new'),
     path('playerlist/<int:pk>/edit/', views.player_edit, name='player_edit'),
 
+    path('playerlist/export', views.player_export, name='player_export'),
+    path('playerlist/pdf', views.player_pdf, name='player_pdf'),
+
     path('schedule', views.schedule, name='schedule'),
     path('schedule/new/', views.schedule_new, name='schedule_new'),
     path('schedule/<int:pk>/edit/', views.schedule_edit, name='schedule_edit'),
