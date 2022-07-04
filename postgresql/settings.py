@@ -76,17 +76,31 @@ WSGI_APPLICATION = 'postgresql.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+
+    #デプロイ
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'root',
-        'PASSWORD': 'eelse',
-        'HOST': 'localhost',
-        'PORT': '3307',
+        'NAME': 'sakai$default',
+        'USER': 'sakai',
+        'PASSWORD': 'cFauTec2',
+        'HOST': 'sakai.mysql.pythonanywhere-services.com',
+        'PORT': '',
         'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
                 },
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'django',
+    #     'USER': 'root',
+    #     'PASSWORD': 'eelse',
+    #     'HOST': 'localhost',
+    #     'PORT': '3307',
+    #     'OPTIONS': {
+    #             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+    #             },
+    # }
 
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql', # 変更
