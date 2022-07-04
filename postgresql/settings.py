@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'testpostgre.apps.TestpostgreConfig',
     'mstlist.apps.MstlistConfig',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
