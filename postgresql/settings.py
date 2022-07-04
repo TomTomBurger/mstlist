@@ -85,9 +85,6 @@ DATABASES = {
         'PASSWORD': 'cFauTec2',
         'HOST': 'sakai.mysql.pythonanywhere-services.com',
         'PORT': '',
-        'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-                },
     }
 
     # 'default': {
