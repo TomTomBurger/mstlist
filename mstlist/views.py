@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-
 from reportlab.platypus import BaseDocTemplate, PageTemplate
 from reportlab.platypus import Paragraph, PageBreak, FrameBreak
 from reportlab.platypus.flowables import Spacer
@@ -28,6 +28,7 @@ import unicodedata
 def index(request):
     return render(request, 'mstlist/index.html')
 
+@login_required
 def sagyo_list(request):
     model = Sagyo.objects.all()
     return render(request, 'mstlist/sagyo_list.html', {'sagyo_list':model})

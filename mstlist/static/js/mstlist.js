@@ -17,3 +17,12 @@ $(function(){
         }
     });
 })
+
+//dropdown
+$(function(){
+    $('.ui.dropdown').dropdown();
+})
+
+$(function(){
+    $('.ui.pointing.dropdown.link.item').dropdown();
+})

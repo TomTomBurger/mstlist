@@ -41,10 +41,31 @@
         <div id="js-sidebar" class="item"><i class="icon large grey content"></i></div>
       </div>
          <a href="/" class="header item">EEL_Web</a>
+
+         {% if user.is_authenticated %}
+            <div class="item">
+              <div class="ui dropdown">
+                <div class="text">{{ user.username }} </div>
+                <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item"><a href="/accounts/logout/">Logout</a></div>
+                  </div>
+              </div>
+            </div>            
+          {% else %}
+            <div class="item">
+              <a href="/accounts/login/" class="ui black basic button">Log in</a>
+              <a href="/accounts/signup/" class="ui primary button">Sign up</a>
+            </div>
+          {% endif %}
+
+          <!-- <a href="/accounts/logout/">(サインアウト)</a> -->
+
+      </div>
     </div>
 
     <!-- コンテンツ本体 -->
-    <div class="pusher">      
+    <div class="pusher">
       {% block content %}
 
       {% endblock %}              
