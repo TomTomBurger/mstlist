@@ -81,7 +81,7 @@ DATABASES = {
     #デプロイ
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sakai$default',
+        'NAME': 'sakai$django',
         'USER': 'sakai',
         'PASSWORD': 'cFauTec2',
         'HOST': 'sakai.mysql.pythonanywhere-services.com',
