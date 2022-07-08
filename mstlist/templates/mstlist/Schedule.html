@@ -1,6 +1,26 @@
 {% extends 'mstlist/base.html' %}
 {% block content %}
 
+    <form action="" method="get">
+        <div class="ui action input">
+            <input name="query" value="{{ request.GET.query }}" type="text" placeholder="Search...">
+
+            {% if request.GET.colum == "work" %}
+            <select name="colum" value="{{ request.GET.colum }}" class="ui compact selection dropdown">
+                <option value="septictank">浄化槽</option>
+                <option value="work" selected >作業</option>
+            </select>
+            {% else %}
+            <select name="colum" value="{{ request.GET.colum }}" class="ui compact selection dropdown">
+                <option value="septictank" selected >浄化槽</option>
+                <option value="work">作業</option>
+            </select>
+            {% endif %}
+
+            <button type="submit" class="ui button">検索</button>
+        </div>
+    </form>
+
     <a href="/schedule/new/"><i class="pencil alternate icon">AddSchedule</i></a> 
 
     <table class="ui celled striped table">
@@ -14,7 +34,7 @@
         </thead>
 
         <tbody>
-        {% for s in schedules %}
+        {% for s in page_obj %}
         <tr>
             <td class="collapsing">
             <a href="{% url 'schedule_edit' pk=s.id %}"><i class="pencil alternate icon"></i></a> 
@@ -32,19 +52,7 @@
         </tbody>
     </table>
 
-    <!-- <script>
-      $('input:visible').first().focus();
-      $(function(){
-        //   $(".collapsing").click(function(){
-        $(".btn_remove").click(function(){
-              if(confirm("削除しますか？")){
-                  //yesの処理（何もぜず進む）
-              }else{
-                  //cancelの処理
-                  return false;
-              }
-          });
-      })
-    </script> -->
+    <!-- ページネーション -->
+    {% include 'mstlist/pagination.html'%}
 
 {% endblock content %}

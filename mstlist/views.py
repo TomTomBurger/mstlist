@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.db.models import Q
+
 from reportlab.platypus import BaseDocTemplate, PageTemplate
 from reportlab.platypus import Paragraph, PageBreak, FrameBreak
 from reportlab.platypus.flowables import Spacer
@@ -18,7 +20,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 
 from mstlist.forms import ScheduleForm, PlayerForm, SagyoForm
 
-from .models import Member, player, Schedule, Sagyo
+from .models import Member, Septictank, player, Schedule, Sagyo
 
 import csv
 import datetime
@@ -30,8 +32,18 @@ def index(request):
 
 @login_required
 def sagyo_list(request):
-    model = Sagyo.objects.all()
-    return render(request, 'mstlist/sagyo_list.html', {'sagyo_list':model})
+    #base
+    sagyos = Sagyo.objects.all()
+    if request.method == "GET":
+        try:
+            #検索
+            query = request.GET.get('query')
+        except:
+            query = None
+        if query:
+            sagyos = sagyos.filter(Q(name__icontains=query))
+            
+    return render(request, 'mstlist/sagyo_list.html', {'sagyo_list':sagyos})
 
 #新規
 def sagyo_new(request):
@@ -65,9 +77,42 @@ def sagyo_remove(request, pk):
     return redirect('sagyolist')
 
 def schedule(request):
-    model = Schedule.objects.all().order_by('yDate')
-    return render(request, 'mstlist/Schedule.html', {'schedules':model})
+    #Base
+    schedules = Schedule.objects.all().order_by('yDate')
+    
+    if request.method == "GET":
 
+        try:
+            #検索
+            query = request.GET.get('query')
+            colum = request.GET.get('colum')
+        except:
+            query = None
+            colum = None
+        
+        if query:
+            #浄化槽か作業か
+            if colum == "septictank":
+                schedules = schedules.filter(Q(cd__name__icontains=query))
+            else:
+                schedules = schedules.filter(Q(sagyoCd__name__icontains=query))
+
+    #ページネーション
+    paginator = Paginator(schedules, 10)
+    page = request.GET.get('page', 1)
+
+    try:
+        pages = paginator.page(page)
+    except PageNotAnInteger:
+        pages = paginator.page(1)
+    except EmptyPage:
+        pages = paginator.page(1)
+
+    context = {'page_obj': pages}
+    # context = {'schedules':schedules, 'page_obj': pages}
+    return render(request, 'mstlist/Schedule.html', context)
+
+#予定追加
 def schedule_new(request):
     if request.method == 'POST':
         form = ScheduleForm(request.POST)
@@ -80,6 +125,7 @@ def schedule_new(request):
         form = ScheduleForm
         return render(request, 'mstlist/Schedule_Edit.html', {'form':form})
 
+#予定変更
 def schedule_edit(request, pk):
     schedule = get_object_or_404(Schedule, pk=pk)
     if request.method == "POST":
@@ -92,17 +138,41 @@ def schedule_edit(request, pk):
         form = ScheduleForm(instance=schedule)
     return render(request, 'mstlist/Schedule_Edit.html', {'form': form})
 
-#削除
+#予定削除
 def schedule_remove(request, pk):
     schedule = get_object_or_404(Schedule, pk=pk)
     schedule.delete()
     return redirect('schedule')
 
+#ListView使用
 class MemberList(ListView):
     model = player
     template_name = 'player_list.html'
     context_object_name = 'player_list'
 
+    #ページネーション
+    paginate_by = 15
+
+    def get_queryset(self):
+        playermodel = player.objects.all()
+        if self.request.method == "GET":
+            try:
+                #検索
+                query = self.request.GET.get('query')
+                colum = self.request.GET.get('colum')
+            except:
+                query = None
+                colum = None
+            if query:
+                #名前かポジションで振り分ける
+                if colum == "name":
+                    playermodel = playermodel.filter(Q(name__icontains=query))
+                else:
+                    playermodel = playermodel.filter(Q(position__icontains=query))
+                
+        return playermodel
+
+#新規
 def player_new(request):
     if request.method == 'POST':
         form = PlayerForm(request.POST)
@@ -112,8 +182,9 @@ def player_new(request):
             return redirect('playerlist')
     else:
         form = PlayerForm
-        return render(request, 'mstlist/player_Edit.html', {'form':form})
+    return render(request, 'mstlist/player_Edit.html', {'form':form})
 
+#更新
 def player_edit(request, pk):
     playermodel = get_object_or_404(player, pk=pk)
     if request.method == "POST":
@@ -137,6 +208,7 @@ def player_export(request):
 
     return responese
 
+#PDF出力
 def player_pdf(request):
 
     LE_ID = 3
@@ -246,6 +318,7 @@ def player_pdf(request):
 
     return response
 
+#文字セット用
 def settext(text, length, LorR = 1):
 
     #型変換
@@ -267,14 +340,3 @@ def settext(text, length, LorR = 1):
 
     ret_text += "|"
     return ret_text.replace("|", "&nbsp;")
-
-
-
-
-
-
-#削除
-def member_remove(request, pk):
-    member = get_object_or_404(Member, pk=pk)
-    member.delete()
-    return redirect('update_sample')

@@ -2,39 +2,62 @@
 
 {% block content %}
 
-    <div>
-  
-      <a href="/playerlist/new/"><i class="pencil alternate icon">AddPlayer</i></a> 
+  <div>
+    <form action="" method="get">
+      <div class="ui action input">
+          <input name="query" value="{{ request.GET.query }}" type="text" placeholder="Search...">
 
-      <div style='text-align: right;'>
-        <button class="ui button" type="submit" method="post"><a href="{% url 'player_pdf' %}" target="_blank" rel="noopener noreferrer">PDF</a></button>
-        <button class="ui button" type="submit"><a href="{% url 'player_export' %}">CSV</a></button>        
+          {% if request.GET.colum == "position" %}
+            <select name="colum" value="{{ request.GET.colum }}" class="ui compact selection dropdown">
+              <option value="name">名前</option>
+              <option value="position" selected >ポジション</option>
+            </select>
+          {% else %}
+            <select name="colum" value="{{ request.GET.colum }}" class="ui compact selection dropdown">
+              <option value="name" selected >名前</option>
+              <option value="position">ポジション</option>
+            </select>
+          {% endif %}
+
+          <button type="submit" class="ui button">検索</button>
       </div>
-      
-      <table class="ui celled striped table">
+  </form>
 
-        <thead>
-          <tr>
-            <th colspan="4">
-              playerlist
-            </th>
-          </tr>
-        </thead>
+  <a href="/playerlist/new/"><i class="pencil alternate icon">AddPlayer</i></a> 
 
-        <tbody>
-          {% for member in player_list %}
-          <tr>
-            <td class="collapsing">
-              <a href="{% url 'player_edit' pk=member.id %}"><i class="pencil alternate icon"></i></a> 
-            </td>
-            <td class="collapsing">
-              <a href="{% url 'player_edit' pk=member.id %}">{{ member.id }}</a>
-            </td>
-            <td>{{ member.name }}</td>
-            <td>{{ member.position }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  {% endblock content %}
+    <table class="ui celled striped table">
+
+      <thead>
+        <tr>
+          <th colspan="4">
+            playerlist
+            <div class="exportbtn">
+              <button class="ui button" type="submit" method="post"><a href="{% url 'player_pdf' %}" target="_blank" rel="noopener noreferrer">PDF</a></button>
+              <button class="ui button" type="submit"><a href="{% url 'player_export' %}">CSV</a></button>        
+            </div>
+
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for member in player_list %}
+        <tr>
+          <td class="collapsing">
+            <a href="{% url 'player_edit' pk=member.id %}"><i class="pencil alternate icon"></i></a> 
+          </td>
+          <td class="collapsing">
+            <a href="{% url 'player_edit' pk=member.id %}">{{ member.id }}</a>
+          </td>
+          <td>{{ member.name }}</td>
+          <td>{{ member.position }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- ページネーション -->
+    {% include 'mstlist/pagination.html'%}
+  
+  </div>
+{% endblock content %}

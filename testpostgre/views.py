@@ -28,12 +28,12 @@ class ListUpdateView(ModelFormSetView):
     template_name = 'member_list.html'
     form_class = MemberUpdateForm
 
-    def get_queryset(self):
-        try:
-            q = self.request.GET.get('query')
-        except:
-            q = None
-        return Member.objects.search(query=q)
+    # def get_queryset(self):
+    #     try:
+    #         q = self.request.GET.get('query')
+    #     except:
+    #         q = None
+    #     return Member.objects.search(query=q)
 
 #削除
 def member_remove(request, pk):

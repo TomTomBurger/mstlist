@@ -37,7 +37,7 @@ class Sagyo(models.Model):
 
 class Schedule(models.Model):
     cd = models.ForeignKey(to=Septictank, on_delete=models.CASCADE, to_field='cd')
-    sagyoCd = models.ForeignKey(to=Sagyo, on_delete=models.CASCADE)
+    sagyoCd = models.ForeignKey(to=Sagyo, on_delete=models.CASCADE, to_field='cd')
     yDate = models.DateField('予定日')
     yId = models.IntegerField('予定ID')
     tCD = models.IntegerField('担当者コード', default=0)

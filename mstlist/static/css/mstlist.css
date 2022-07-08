@@ -9,32 +9,16 @@
 .header item {
     color:black;
 }
-/* .page-header {
-    background-color: #088fa3ee;
-    margin-top: 0;
-    padding: 0px 0px 0px 10px;
-} */
-
-/* .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #ffffff;
-    font-size: 25pt;
-    text-decoration: none;
-} */
-
-/* h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+.ui.action.input {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    float: right;
 }
 
-#journal-scroll::-webkit-scrollbar {
-    width: 4px;
-    cursor: pointer;
+.test {
+    display: flex;
 }
-#journal-scroll::-webkit-scrollbar-track {
-    background-color: rgba(229, 231, 235, var(--bg-opacity));
-    cursor: pointer;
+.exportbtn {
+    display: flex;
+    float: right;
 }
-#journal-scroll::-webkit-scrollbar-thumb {
-    cursor: pointer;
-    background-color: #a0aec0;
-} */
-

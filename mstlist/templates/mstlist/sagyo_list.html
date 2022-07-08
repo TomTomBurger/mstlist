@@ -2,6 +2,17 @@
 
 {% block content %}
 
+    <form action="" method="get">
+        <div class="ui action input">
+            <input name="query" value="{{ request.GET.query }}" type="text" placeholder="Search...">
+            <select class="ui compact selection dropdown">
+                <option value="all">名前</option>
+            </select>                
+            <button type="submit" class="ui button">検索</button>
+        </div>
+    </form>
+
+
     <a href="/sagyolist/new/"><i class="pencil alternate icon">AddSagyo</i></a> 
 
     <table class="ui celled striped table">
@@ -35,4 +46,4 @@
         </tbody>
     </table>
 
-  {% endblock content %}
+{% endblock content %}
