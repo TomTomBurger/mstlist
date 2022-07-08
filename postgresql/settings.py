@@ -79,26 +79,26 @@ WSGI_APPLICATION = 'postgresql.wsgi.application'
 DATABASES = {
 
     #デプロイ
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'sakai$django',
-    #     'USER': 'sakai',
-    #     'PASSWORD': 'cFauTec2',
-    #     'HOST': 'sakai.mysql.pythonanywhere-services.com',
-    #     'PORT': '',
-    # }
-
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'root',
-        'PASSWORD': 'eelse',
-        'HOST': 'localhost',
-        'PORT': '3307',
-        'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-                },
+        'NAME': 'sakai$django',
+        'USER': 'sakai',
+        'PASSWORD': 'cFauTec2',
+        'HOST': 'sakai.mysql.pythonanywhere-services.com',
+        'PORT': '',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'django',
+    #     'USER': 'root',
+    #     'PASSWORD': 'eelse',
+    #     'HOST': 'localhost',
+    #     'PORT': '3307',
+    #     'OPTIONS': {
+    #             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+    #             },
+    # }
 
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql', # 変更
